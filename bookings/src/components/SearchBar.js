@@ -13,36 +13,29 @@ function SearchBar() {
   const [storeId, setStoreId] = useState();
   const navigate = useNavigate();
 
-  const getBookings = async (e) => {
-    e.preventDefault();
+  // const getBookings = async (e) => {
+  //   e.preventDefault();
 
-    const details = {
-      from_date: format(startDate, "yyyy-MM-dd"),
-      now: format(new Date(), "yyyy-MM-dd h:mm:ss"),
-      store_id: storeId,
-      to_date: format(endDate, "yyyy-MM-dd"),
-      type: "default",
-    };
+  //   const details = {
+  //     from_date: format(startDate, "yyyy-MM-dd"),
+  //     now: format(new Date(), "yyyy-MM-dd h:mm:ss"),
+  //     store_id: storeId,
+  //     to_date: format(endDate, "yyyy-MM-dd"),
+  //     type: "default",
+  //   };
 
-    await axios
-      .post("http://localhost:3001", details)
-      .then((res) => {
-        setBookings(res.data);
-        console.log(res.data);
-        console.log(storeId);
-        // navigate({
-        //   pathname:`/${storeId}`,
-        //   // state:{
-        //   //   startDate: "test1",
-        //   //   //storeId: storeId,
-        //   //   //bookings: "test2",
-        //   // }
-        // });
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
+  //   await axios
+  //     .post("http://localhost:3001", details)
+  //     .then((res) => {
+  //       setBookings(res.data);
+  //       console.log(res.data);
+  //       console.log(storeId);
+  //       navigate(`/${storeId}`);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.message);
+  //     });
+  // };
 
   //console.log(bookings);
 
@@ -63,19 +56,15 @@ function SearchBar() {
       />
 
       <label> Select Ending Date:</label>
-      <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
+      {/* <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} /> */}
 
-      <BookingList bookings={bookings} dateToday={startDate} />
+      <BookingList startDate={startDate} />
 
-      <button onClick={getBookings}>Search</button>
+      {/* <button onClick={getBookings}>Search</button> */}
 
-      {/* <Link
-        to={`/${storeId}`}
-        //render={() => <BookingList bookings={bookings} dateToday={startDate} />}
-      >
-       
-      </Link> */}
-      
+      <Link to={`/${storeId}`}>
+        <button>Search</button>
+      </Link>
     </div>
   );
 }
