@@ -4,15 +4,13 @@ import { format } from "date-fns";
 import axios from "axios";
 
 function BookingList({ startDate }) {
-  //const {bookings, startDate, storeId} = useLocation().state;
-  // const location = useLocation();
-  // //const {startDate, bookings} = location.state;
+
 
   const [bookings, setBookings] = useState([]);
   const { storeId } = useParams();
 
   const getBookings = async (e) => {
-    e.preventDefault();
+    
 
     const details = {
       from_date: format(startDate, "yyyy-MM-dd"),
@@ -42,10 +40,10 @@ function BookingList({ startDate }) {
   return (
     <div>
       {bookings.length === 0 ? (
-        <p>There no booking for {startDate}</p>
+        <p>There no booking for </p>
       ) : (
         <ul>
-          <p>Bookings for {startDate}</p>
+          <p>Bookings for </p>
           {bookings.map((bookings, index) => (
             <li key={index}>{bookings}</li>
           ))}
