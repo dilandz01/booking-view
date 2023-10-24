@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
-import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
-import { Link} from "react-router-dom";
-import BookingList from "./BookingList";
+import { Link } from "react-router-dom";
 
 function SearchBar() {
   const [startDate, setStartDate] = useState(new Date());
   const [storeId, setStoreId] = useState();
 
-
-
   return (
     <div>
+      
+      <h1>Store Booking</h1>
       <label>Store ID:</label>
       <input
         type="text"
@@ -28,12 +26,9 @@ function SearchBar() {
         onChange={(date) => setStartDate(date)}
       />
 
-      <label> Select Ending Date:</label>
-     
+      {/* <BookingList startDate={startDate} /> */}
 
-      <BookingList startDate={format(startDate, "yyyy-MM-dd")} />
-
-      <Link to={`/${storeId}`}>
+      <Link to={{ pathname: `/${storeId}` }} state={{ data: startDate }}>
         <button>Search</button>
       </Link>
     </div>
