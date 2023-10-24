@@ -3,8 +3,8 @@ import DatePicker from "react-datepicker";
 import axios from "axios";
 import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
-import { useNavigate } from "react-router-dom";
-// import BookingList from "./BookingList";
+import { Link, useNavigate } from "react-router-dom";
+import BookingList from "./BookingList";
 
 function SearchBar() {
   const [startDate, setStartDate] = useState(new Date());
@@ -12,7 +12,6 @@ function SearchBar() {
   const [bookings, setBookings] = useState([]);
   const [storeId, setStoreId] = useState();
   const navigate = useNavigate();
-
 
   const getBookings = async (e) => {
     e.preventDefault();
@@ -25,26 +24,27 @@ function SearchBar() {
       type: "default",
     };
 
-    
     await axios
       .post("http://localhost:3001", details)
       .then((res) => {
         setBookings(res.data);
-        navigate({
-          pathname:`/${storeId}`, 
-          state:{
-            startDate: startDate,
-            storeId:storeId,
-            bookings:bookings,
-          },
-        });
+        console.log(res.data);
+        console.log(storeId);
+        // navigate({
+        //   pathname:`/${storeId}`,
+        //   // state:{
+        //   //   startDate: "test1",
+        //   //   //storeId: storeId,
+        //   //   //bookings: "test2",
+        //   // }
+        // });
       })
       .catch((err) => {
         console.log(err.message);
       });
   };
 
-  console.log(bookings);
+  //console.log(bookings);
 
   return (
     <div>
@@ -64,9 +64,18 @@ function SearchBar() {
 
       <label> Select Ending Date:</label>
       <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
-      <button onClick={getBookings}>Submit</button>
 
-      {/* <BookingList bookings={bookings} dateToday={startDate} /> */}
+      <BookingList bookings={bookings} dateToday={startDate} />
+
+      <button onClick={getBookings}>Search</button>
+
+      {/* <Link
+        to={`/${storeId}`}
+        //render={() => <BookingList bookings={bookings} dateToday={startDate} />}
+      >
+       
+      </Link> */}
+      
     </div>
   );
 }
