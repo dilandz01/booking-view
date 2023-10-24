@@ -41,7 +41,7 @@ function BookingList({ startDate }) {
 
     useEffect(() => {
       getBookings();
-    }, [storeId]);
+    }, [todayDate, storeId]);
 
  
 
