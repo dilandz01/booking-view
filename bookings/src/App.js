@@ -1,13 +1,16 @@
-
-import './App.css';
-import SearchBar from './components/SearchBar';
+import "./App.css";
+import BookingList from "./components/BookingList";
+import SearchBar from "./components/SearchBar";
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Bookings</h1>
-      <SearchBar/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" exact component={<SearchBar/>} />
+        <Route path="/:storeID" exact component={<BookingList/>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
