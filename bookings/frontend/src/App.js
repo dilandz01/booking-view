@@ -1,13 +1,10 @@
-
 import BookingList from "./components/BookingList";
-import '../src/index.css';
-import Test from "./components/test";
+import "../src/index.css";
 
 function App() {
   return (
     <div>
-      <BookingList/>
-      {/* <Test/> */}
+      <BookingList />
     </div>
   );
 }
