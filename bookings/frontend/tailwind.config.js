@@ -13,9 +13,6 @@ module.exports = {
         'gotham-medium': ['Gotham Medium','sans'],
         'gotham-medium-italic': ['Gotham Medium Italic','sans'],
       },
-      borderRadius: {
-        '10xl': '10rem', // Adjust the value as needed
-      },
     },
   },
   plugins: [],
