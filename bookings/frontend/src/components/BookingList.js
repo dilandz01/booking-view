@@ -8,7 +8,7 @@ import QRCode from "react-qr-code";
 
 function BookingList() {
   const [bookings, setBookings] = useState([]);
-  const [dataLoaded, setDataLoaed] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   const todayDate = format(new Date(), "yyyy-MM-dd");
 
@@ -30,7 +30,7 @@ function BookingList() {
       .post("https://ow-bookings-view.onrender.com", details)
       .then((res) => {
         setBookings(res.data);
-        setDataLoaed(true);
+        setDataLoaded(true);
         console.log(res.data);
       })
       .catch((err) => {
@@ -66,21 +66,21 @@ function BookingList() {
             Times available:
           </h3>
 
-          <div className="grid grid-cols-4 gap-8 ml-10 mr-20 my-10">
-            {dataLoaded && bookings.length === 0 ? (
-              <p className="text-white font-gotham-bold text-3xl ">
-                Fully Booked {todayDate}
-              </p>
-            ) : (
-              bookings.map((booking, index) => (
+          {dataLoaded && bookings.length === 0 ? (
+            <p className="text-white font-gotham-bold text-2xl m-10 p-2">
+              Fully Booked For Today {format(new Date(), "dd/MM/yyyy")}
+            </p>
+          ) : (
+            <div className="grid grid-cols-4 gap-8 ml-10 mr-20 my-10">
+              {bookings.slice(0, 12).map((booking, index) => (
                 <div key={index} className="text-zinc-800 shadow-lg">
                   <p className="bg-white text-center text-3xl font-gotham-bold py-3">
                     {booking}
                   </p>
                 </div>
-              ))
-            )}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
